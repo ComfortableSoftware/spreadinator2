@@ -116,6 +116,7 @@ def moveFlatImage(thisFileEntry_):
     if (
         (_result_[0] is not True)
     ):
+      _thisFileEntry_[K_ERROR_TEXT] += f"""Convert {_result_=}"""
       moveError(_thisFileEntry_)
       return False
 
