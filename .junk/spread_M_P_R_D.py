@@ -2,7 +2,7 @@
 
 
 from tqdm import tqdm as TQ_DM
-from spreadinator2 import VARS as V
+from spreadinator import VARS as V
 
 
 locals().update(V.ALL_THE_VALS)

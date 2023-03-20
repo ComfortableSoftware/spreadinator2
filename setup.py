@@ -8,25 +8,25 @@ setup(
   author="GaelicGrime",
   author_email="will.angus.blaylock@gmail.com",
   license="GPLv3",
-  name="Spreadinator2",
+  name="Spreadinator",
   url="https://github.com/ComfortableSoftware/spreadinator",
-  version="2!0.2.1-2",
-  package_dir={"spreadinator2": "spreadinator2"},
+  version="0.3.0",
+  package_dir={"spreadinator": "spreadinator"},
   package_data={
-      "spreadinator2": [
+      "spreadinator": [
           "../doc/*",
       ],
   },
   packages=find_packages(),
   install_requires=[
-      "CS-CF2",
+      "CSCF",
   ],
   scripts=[
-      "scripts/copyonly2",
-      "scripts/currentspread2",
-      "scripts/respread2",
-      "scripts/spread2",
-      "scripts/spreadinator2",
+      "scripts/copyonly",
+      "scripts/currentspread",
+      "scripts/respread",
+      "scripts/spread",
+      "scripts/spreadinator",
   ],
 )
 

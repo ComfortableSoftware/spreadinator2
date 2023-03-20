@@ -2,8 +2,8 @@
 
 
 from tqdm import tqdm as TQ_DM
-from spreadinator2 import LIST as L
-from spreadinator2 import VARS as V
+from spreadinator import LIST as L
+from spreadinator import VARS as V
 
 
 locals().update(V.ALL_THE_VALS)

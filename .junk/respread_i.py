@@ -2,7 +2,7 @@
 
 
 from tqdm import tqdm as TQ_DM
-from spreadinator2 import (
+from spreadinator import (
   LIST as L,
   VARS as V,
 )

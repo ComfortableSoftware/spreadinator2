@@ -1,0 +1,7 @@
+#!/usr/bin/env /usr/bin/zsh
+
+
+python -m spreadinator -copyOnly "$@"
+
+
+#

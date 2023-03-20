@@ -1,7 +1,0 @@
-#/usr/bin/env /usr/bin/sh
-
-
-python -m spreadinator2 -currentspread "$@"
-
-
-#
