@@ -1,17 +1,83 @@
 
 
-
-from tqdm import tqdm as TQ_DM
-from spreadinator import LIST as L
-from spreadinator import VARS as V
-
-
-locals().update(V.ALL_THE_VALS)
+from . import (
+  UTILS as U,
+  VARS as V,
+  )
 
 
-def moveFile(source_, dest_):
-  #print(f""" Would move '{source_}' to '{dest_}'""")
-  V.CF_SH.moveFile(source_, dest_)
+locals().update(V.ALL_THE_SPREAD_VALS)
+locals().update(V.CF_OS.ALL_THE_OS_DATA)
+
+
+WAIS = V.CF_WW.whereStr
+
+
+def identifyAFile(*,
+    thisFileEntry_,
+  ):
+  # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
+  # Add checking mime magic and making sure extension matches what identify returns
+  # Add marking 0x00 starting files
+  # Add any other errors that are easily identified and solvable automatically.
+  _thisFileEntry_ = thisFileEntry_
+  _IDResult_ = V.CF_OS.identifyMedia(
+    sourceEntry_=_thisFileEntry_,
+  )
+  _strToWrite_ = f"""Identified {_thisFileEntry_[K_PATH]} with results of {_IDResult_}"""
+  V.LOGW(_strToWrite_)
+
+  if (
+      (_IDResult_[0] is not True)
+  ):
+  # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
+    _thisFileEntry_ = V.CF_OS.addNewFilePiece(
+      newDir_=V.VCD[KD_DEST_DIR_ERRS]
+      newJustFilenameSuffix_=".IDError",
+      thisFileEntry_=_thisFileEntry_,
+    )
+    _thisFileEntry_[K_ERROR_TEXT] += f"""ID Error occurred:{_IDResult_=}"""
+    _thisFileEntry_[K_ERROR_FILENAME] = f"""{_thisFileEntry_[K_FILENAME]}.{_thisFileEntry_[K_NEW_JUST_FILENAME_SUFFIX]}.txt"""
+    V.LOGW(_thisFileEntry_[K_ERROR_TEXT])
+    moveError(_thisFileEntry_)
+    return (False, _IDResult_)
+  # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+  elif (
+      (_IDResult_[1][K_FRAME] != 1)
+  ):
+  # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
+    _thisFileEntry_[K_ERROR_TEXT] += f"""{_IDResult_=}"""
+    _thisFileEntry_ = V.CF_OS.addNewFilePiece(
+        newDir_=V.VCD[KD_DEST_DIR_ANIM],
+        newExtension_=_thisFileEntry_[K_EXTENSION].lower(),
+        newJustFilename_= f"""{_thisFileEntry_[K_FILENAME]}.framesError""",
+      )
+    doMoveAJunkImage(
+      thisFileEntry_=_thisFileEntry_,
+    )
+    return (False, _IDResult_)
+  # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+  elif (
+      (int(_IDResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SIZE]) or
+      (int(_IDResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SIZE])
+  ):
+    # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
+    _thisFileEntry_[K_ERROR_TEXT] += f"""{_IDResult_=}"""
+    _thisFileEntry_ = V.CF_OS.addNewFilePiece(
+        newDir_=V.VCD[KD_DEST_DIR_JUNK],
+        newExtension_=_thisFileEntry_[K_EXTENSION].lower(),
+        newJustFilename_= f"""{_thisFileEntry_[K_FILENAME]}""",
+        newJustFilenameSuffix_=".sizeError",
+        thisFileEntry_=_thisFileEntry_,
+      )
+    doMoveAJunkImage(
+      thisFileEntry_=_thisFileEntry_,
+    )
+    return (False, _IDResult_)
+    # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+
+  return (True, _IDResult_)
+  # ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1
 
 
 def moveAnImageFile(*,
@@ -117,8 +183,14 @@ def moveAVideoFile(*,
   # ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1
 
 
+def moveFile(source_, dest_):
+  #print(f""" Would move '{source_}' to '{dest_}'""")
+  V.CF_SH.moveFile(source_, dest_)
+
+
 def main():
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
+  V.LOGW = V.LOG.write
   print(f"""Making image list from {V.VCD[KD_DEST_DIR_PICS]}""")
   L.FILE_LIST = V.CF_OS.globFileList(
     recursive_=True,

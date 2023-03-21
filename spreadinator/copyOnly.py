@@ -37,6 +37,7 @@ def makeFileList(*,
 
 def main():
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
+  V.LOGW = V.LOG.write
   print(f"""This is {INDENT_IN} '{__file__}'""")
   print(f"""Copying files from the following directories {V.VCD[KD_SOURCE_DIR_LIST]}""")
   for _thisDir_ in V.TQ_DM(V.VCD[KD_SOURCE_DIR_LIST], position=0, colour="#ff00ff", leave=False):
