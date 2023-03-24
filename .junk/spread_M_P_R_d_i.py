@@ -14,12 +14,12 @@ def moveFile(source_, dest_):
 
 
 def moveAFile(*,
-    sourceEntry_,
+    thisFileEntry_,
 ):
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
   _destEntry_ = E_ENTRY()
-  _destEntry_.update(sourceEntry_)
-  _sourceUrl_ = sourceEntry_[K_PATH]
+  _destEntry_.update(thisFileEntry_)
+  _sourceUrl_ = thisFileEntry_[K_PATH]
 
   # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   # * Start of set _destEntry_ properly
@@ -87,13 +87,13 @@ def moveAFile(*,
       (_destEntry_[K_NEW_EXTENSION] not in V.FTL_MEDIA)
   ):
     # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
-    moveFile(sourceEntry_[K_PATH], _destEntry_[K_PATH])
+    moveFile(thisFileEntry_[K_PATH], _destEntry_[K_PATH])
     return True
     # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
 
   _TName_ = V.CF_HASH.doAHash(
       hash_=HASH_BLAKE2B,
-      stringToHash_=f"""{sourceEntry_}""",
+      stringToHash_=f"""{thisFileEntry_}""",
   )
   _destEntry_[K_NEW_JUST_FILENAME] = f"""{_TName_}{_destEntry_[K_NEW_EXTENSION]}"""
   _destURL_ = f"""{_destEntry_[K_NEW_DIR]}/{_destEntry_[K_NEW_JUST_FILENAME]}"""
@@ -106,15 +106,15 @@ def moveAFile(*,
     # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
     _destEntry_[K_NEW_EXTENSION] = ".webp"
     _destURL_ = f"""{_destEntry_[K_NEW_DIR]}/{_destEntry_[K_NEW_JUST_FILENAME]}"""
-    moveFile(sourceEntry_["K_PATH"], _destURL_)
-    V.INC_DIR_NUM()
+    moveFile(thisFileEntry_["K_PATH"], _destURL_)
+    # INC_DIR_NUM()
     return True
 
   # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   # * Start of move everything else.
   # ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱
-  moveFile(sourceEntry_["K_PATH"], _destURL_)
-  V.INC_DIR_NUM()
+  moveFile(thisFileEntry_["K_PATH"], _destURL_)
+  # INC_DIR_NUM()
   return True
   # ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰
   # * End of move everything else.
@@ -149,7 +149,7 @@ def main():
           # 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱
           continue
           # ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5
-        moveAFile(sourceEntry_=_thisFileEntry_)
+        moveAFile(thisFileEntry_=_thisFileEntry_)
         # ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4
       # ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3
     # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2

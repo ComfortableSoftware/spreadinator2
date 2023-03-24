@@ -10,7 +10,7 @@ setup(
   license="GPLv3",
   name="Spreadinator",
   url="https://github.com/ComfortableSoftware/spreadinator",
-  version="0.3.0",
+  version="0.3.1",
   package_dir={"spreadinator": "spreadinator"},
   package_data={
       "spreadinator": [
@@ -23,6 +23,7 @@ setup(
   ],
   scripts=[
       "scripts/copyonly",
+      "scripts/cspread",
       "scripts/currentspread",
       "scripts/respread",
       "scripts/spread",

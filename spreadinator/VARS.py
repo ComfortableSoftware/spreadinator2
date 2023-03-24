@@ -1,6 +1,10 @@
 
 
 from tqdm import tqdm as TQ_DM
+
+from CSCF.CLASSES_D import (
+    _00_COUNTER_C as CF_CNT,
+)
 from CSCF.SUBM_D import (
     _00_LOG_IT as CF_LOG,
     _00_OS as CF_OS,
@@ -20,14 +24,27 @@ locals().update(CF_HASH.ALL_THE_HASHES_DATA)
 V = None
 
 
+#LDC = CF_LISTS.list1_C()
+#LDL = LDC.L
+#LFC = CF_LISTS.list1_C()
+#LFL = LFC.L
 ACTIVE_LOG_DIR = "/storage/logs/scripts"
 ACTIVE_LOG_FILENAME = "spreadinator.txt"
+C_CS_PER_DIR = None
+C_CS_PER_FILE = None
+CN = None
+CSC = None
 DEBUG = False
 INACTIVE_LOG_DIR = "/dev/null"
 INACTIVE_LOG_FILENAME = ""
 LOG = None
 LOGW = None
-
+NUM_FILES = 0
+PLC = CF_OS.plMyEntryList_C()
+PLDL = None
+PLFL = None
+STATUS = False
+WAIS = CF_WW.whereStr
 
 
 #    "FTL_ALL_KNOWN": FTL_ALL_KNOWN,
@@ -51,11 +68,7 @@ LOGW = None
 #  (K_GEOMETRY_PAGE, (0, 0)),  # %g
 
 
-#LDC = CF_LISTS.list1_C()
-#LDL = LDC.L
-#LFC = CF_LISTS.list1_C()
-#LFL = LFC.L
-PLE = CF_OS.plMyEntryList_C()
+
 
 ALL_THE_KEYS = {
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
@@ -99,6 +112,7 @@ ALL_THE_KEYS = {
   "KD_NUM_DEST_DIRS": "KD_NUM_DEST_DIRS",
   "KD_NUM_DIR_DIGITS_STR": "KD_NUM_DIR_DIGITS_STR",
   "KD_OPERATION": "KD_OPERATION",
+  "KD_PER_FILE": "KD_PER_FILE",
   "KD_RENAME_ALL": "KD_RENAME_ALL",
   "KD_RENAME": "KD_RENAME",
   "KD_RESPREAD_DOT": "KD_RESPREAD_DOT",
@@ -164,6 +178,7 @@ class C_CURRENT():
       KD_NUM_DEST_DIRS: 300,
       KD_NUM_DIR_DIGITS_STR: "03d",
       KD_OPERATION: K_SPREAD,
+      KD_PER_FILE: False,
       KD_RENAME_ALL: False,
       KD_RENAME: True,
       KD_RESPREAD_DOT: False,
@@ -218,6 +233,7 @@ class C_DEFAULT():
       KD_NUM_DEST_DIRS: 300,
       KD_NUM_DIR_DIGITS_STR: "03d",
       KD_OPERATION: K_SPREAD,
+      KD_PER_FILE: False,
       KD_RENAME_ALL: False,
       KD_RENAME: True,
       KD_RESPREAD_DOT: False,
@@ -411,6 +427,22 @@ def O_COPY_ONLY():
   # ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1
 
 
+def O_PER_FILE_PROGRESS():
+  # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
+  _args_ = [
+    "-pf",
+    "-perfile",
+  ]
+  _help_ = f""""""
+  return V.CF_OPT.V.O_CHOICES_MAKER(
+    args_=_args_,
+    const_=V.VDD[KD_IDENTIFY],
+    dest_="perFile",
+    help1_=_help_,
+  )
+  # ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1
+
+
 def O_CURRENT_SPREAD():
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
   _help_ = f"""Spreads current directory's subdirectories to have [parameter] files per directory.
@@ -573,7 +605,8 @@ def O_RENAME_ALL():
 def O_RENAME():
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
   _help_ = f"""Randomly rename files while copying or moving.
-{INDENT_IN}{INDENT_IN} Default is {V.VDD[KD_RENAME]} rename files."""
+{INDENT_IN}{INDENT_IN} Default is {V.VDD[KD_RENAME]} rename files.
+{INDENT_IN}{INDENT_IN} Ignores all other options except '-d', '-s', '-r'."""
   return V.CF_OPT.V.O_CHOICES_MAKER(
       args_=[
           "-r",
@@ -661,6 +694,7 @@ OG_MAIN = [
     O_KILL_METADATA,  ##
     O_LOG_FILE,
     O_NUM_DIR,  ##
+    O_PER_FILE_PROGRESS, ##
     O_RENAME_ALL,
     O_RENAME,  ##
 ]
@@ -775,6 +809,20 @@ def getOptions():
 
   # ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰
   # * End of force.
+  # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+
+  # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+  # * Start of KD_PER_FILE
+  # ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱
+  V.VCD[KD_PER_FILE] = V.CF_OPT.V.RETURN_BOOL(V.ARGS.perFile)
+  if (
+      (V.VCD[KD_PER_FILE] is None)
+  ):
+    # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
+    V.VCD[KD_PER_FILE] = V.VDD[KD_PER_FILE]
+    # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+  # ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰
+  # * End of KD_PER_FILE
   # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 
   # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
@@ -1437,6 +1485,9 @@ def checkMakeDest(
         )
         # ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4
       # ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3
+    _strToWrite_ = "Making cspread directories" + WAIS(skipFrames_=2) + f"""{NEWLINE}""" + V.REPR() + NEWLINE
+    V.LOGW(_strToWrite_)
+
     return
     # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
 
@@ -1488,18 +1539,33 @@ def hashName(*,
     # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
     hashToUse_ = V.VCD[KD_HASH]
     # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+  _strToWrite_ = WAIS(skipFrames_=2) + f"""{NEWLINE}Hashing '{thisFileEntry_[K_PATH]}'{NEWLINE}"""
+  V.LOGW(_strToWrite_)
+
   _TName_ = V.CF_HASH.doAHash(
       hash_=hashToUse_,
-      stringToHash_=f"""{thisFileEntry_[K_PATH]}""",
+      stringToHash_=f"""{thisFileEntry_[K_PATH]}{CF_TDT.hTimestamp()}""",
   )
-  return _TName_
+  return f"""{_TName_}_{CF_TDT.hTimestamp()}"""
   # ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1
 
 
-def INC_DIR_NUM():
+def Z_INC_DIR_NUM():
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
   V.VCD[KD_DIR_NUM] = (V.VCD[KD_DIR_NUM] + 1) % V.VCD[KD_NUM_DEST_DIRS]
+  print(WAIS(skipFrames_=2) + f"""{NEWLINE}{NEWLINE}{V.VCD[KD_DIR_NUM]}{NEWLINE}{NEWLINE}""")
   # ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1
+
+
+def setCounter():
+  V.CSC = V.CF_CNT.counter_C(
+      high_=V.VCD[KD_NUM_DEST_DIRS],
+      loop_=True,
+      strMode_=True,
+    )
+  V.CSC.startMe()
+  V.CSC.makeFormat()
+  V.CN = V.CSC.N
 
 
 def setVCDDestDirs():

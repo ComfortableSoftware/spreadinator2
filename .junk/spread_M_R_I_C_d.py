@@ -14,12 +14,12 @@ def moveFile(source_, dest_):
 
 
 def moveAFile(*,
-    sourceEntry_,
+    thisFileEntry_,
 ):
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
   _destEntry_ = E_ENTRY()
-  _destEntry_.update(sourceEntry_)
-  _sourceUrl_ = sourceEntry_[K_PATH]
+  _destEntry_.update(thisFileEntry_)
+  _sourceUrl_ = thisFileEntry_[K_PATH]
 
   # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   # * Start of set _destEntry_ properly
@@ -87,7 +87,7 @@ def moveAFile(*,
       (_destEntry_[K_NEW_EXTENSION] not in V.FTL_MEDIA)
   ):
     # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
-    moveFile(sourceEntry_[K_PATH], _destEntry_[K_PATH])
+    moveFile(thisFileEntry_[K_PATH], _destEntry_[K_PATH])
     return True
     # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
 
@@ -105,19 +105,19 @@ def moveAFile(*,
     # ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱
     # * Identify images and convert them webp and move to V.VCD[KD_DEST_DIR_PICS]
     _identifyResult_ = V.CF_OS.identifyMedia(
-      sourceEntry_=sourceEntry_,
+      thisFileEntry_=thisFileEntry_,
     )
     if (
         (_identifyResult_[0] is False)
     ):
       # 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱
       # * Errors are present.
-      _errorFilename_ = f"""{V.VCD[KD_DEST_DIR_ERRS]}/{sourceEntry_[K_FILENAME]}.txt"""
+      _errorFilename_ = f"""{V.VCD[KD_DEST_DIR_ERRS]}/{thisFileEntry_[K_FILENAME]}.txt"""
       with open(_errorFilename_, "tw") as _FDOut_:
         _FDOut_.write(f"""{_identifyResult_}\n""")
         _FDOut_.flush()
         _FDOut_.close()
-      moveFile(sourceEntry_[K_PATH], f"""{V.VCD[KD_DEST_DIR_ERRS]}/{sourceEntry_[K_FILENAME]}""")
+      moveFile(thisFileEntry_[K_PATH], f"""{V.VCD[KD_DEST_DIR_ERRS]}/{thisFileEntry_[K_FILENAME]}""")
       if (
           (V.CF_OS.EXISTS(_destURL_) is True)
       ):
@@ -128,12 +128,12 @@ def moveAFile(*,
         (_identifyResult_[1][K_FRAME] > 1)
     ):
       # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱
-      _errorFilename_ = f"""{V.VCD[KD_DEST_DIR_ANIM]}/{sourceEntry_[K_FILENAME]}.txt"""
+      _errorFilename_ = f"""{V.VCD[KD_DEST_DIR_ANIM]}/{thisFileEntry_[K_FILENAME]}.txt"""
       with open(_errorFilename_, "tw") as _FDOut_:
         _FDOut_.write(f"""{_identifyResult_}\n""")
         _FDOut_.flush()
         _FDOut_.close()
-      moveFile(sourceEntry_[K_PATH], f"""{V.VCD[KD_DEST_DIR_ANIM]}/{sourceEntry_[K_FILENAME]}""")
+      moveFile(thisFileEntry_[K_PATH], f"""{V.VCD[KD_DEST_DIR_ANIM]}/{thisFileEntry_[K_FILENAME]}""")
       if (
           (V.CF_OS.EXISTS(_destURL_) is True)
       ):
@@ -145,12 +145,12 @@ def moveAFile(*,
         (int(_identifyResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SIZE])
     ):
       # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱
-      _errorFilename_ = f"""{V.VCD[KD_DEST_DIR_JUNK]}/{sourceEntry_[K_FILENAME]}.{_identifyResult_[1][K_GEOMETRY_PAGE][0]}x{_identifyResult_[1][K_GEOMETRY_PAGE][1]}.txt"""
+      _errorFilename_ = f"""{V.VCD[KD_DEST_DIR_JUNK]}/{thisFileEntry_[K_FILENAME]}.{_identifyResult_[1][K_GEOMETRY_PAGE][0]}x{_identifyResult_[1][K_GEOMETRY_PAGE][1]}.txt"""
       with open(_errorFilename_, "tw") as _FDOut_:
         _FDOut_.write(f"""{_identifyResult_}\n""")
         _FDOut_.flush()
         _FDOut_.close()
-      moveFile(sourceEntry_[K_PATH], f"""{V.VCD[KD_DEST_DIR_JUNK]}/{sourceEntry_[K_FILENAME]}""")
+      moveFile(thisFileEntry_[K_PATH], f"""{V.VCD[KD_DEST_DIR_JUNK]}/{thisFileEntry_[K_FILENAME]}""")
       if (
           (V.CF_OS.EXISTS(_destURL_) is True)
       ):
@@ -196,19 +196,19 @@ def moveAFile(*,
           (_result_.returncode == 0)
       ):
         # 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱ 4⟱
-        V.CF_OS.RM(sourceEntry_[K_PATH])
+        V.CF_OS.RM(thisFileEntry_[K_PATH])
         V.CF_OS.CHMOD(_destURL_, V.VCD[KD_CHMOD])
-        V.INC_DIR_NUM()
+        # INC_DIR_NUM()
         return True
         # ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱
       else:
         # ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱ ⟰4⟱
-        _errorFilename_ = f"""{V.VCD[KD_DEST_DIR_ERRS]}/{sourceEntry_[K_FILENAME]}.txt"""
+        _errorFilename_ = f"""{V.VCD[KD_DEST_DIR_ERRS]}/{thisFileEntry_[K_FILENAME]}.txt"""
         with open(_errorFilename_, "tw") as _FDOut_:
           _FDOut_.write(f"""{_result_}\n""")
           _FDOut_.flush()
           _FDOut_.close()
-        moveFile(sourceEntry_[K_PATH], f"""{CURRENT_DEST_DIR_ERRS}/{sourceEntry_[K_FILENAME]}""")
+        moveFile(thisFileEntry_[K_PATH], f"""{CURRENT_DEST_DIR_ERRS}/{thisFileEntry_[K_FILENAME]}""")
         if (
             (V.CF_OS.EXISTS(_destURL_) is True)
         ):
@@ -225,8 +225,8 @@ def moveAFile(*,
   # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   # * Start of move everything else.
   # ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱
-  moveFile(sourceEntry_["K_PATH"], _destURL_)
-  V.INC_DIR_NUM()
+  moveFile(thisFileEntry_["K_PATH"], _destURL_)
+  # INC_DIR_NUM()
   return True
   # ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰
   # * End of move everything else.
@@ -261,7 +261,7 @@ def main():
           # 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱ 5⟱
           continue
           # ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5 ⟰5
-        moveAFile(sourceEntry_=_thisFileEntry_)
+        moveAFile(thisFileEntry_=_thisFileEntry_)
         # ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4 ⟰4
       # ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3
     # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
