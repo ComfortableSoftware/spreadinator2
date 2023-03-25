@@ -72,8 +72,8 @@ def moveAnImageFile(*,
     return False
     # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱
   elif (
-      (int(_identifyResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SIZE]) or
-      (int(_identifyResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SIZE])
+      (int(_identifyResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SHIT_SIZE]) or
+      (int(_identifyResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SHIT_SIZE])
   ):
     # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱
     _errorFilename_ = f"""{V.VCD[KD_DEST_DIR_JUNK]}/{thisFileEntry_[K_FILENAME]}.{_identifyResult_[1][K_GEOMETRY_PAGE][0]}x{_identifyResult_[1][K_GEOMETRY_PAGE][1]}.txt"""

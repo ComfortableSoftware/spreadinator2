@@ -157,8 +157,8 @@ def moveAFile_D(*,
       return True
       # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱
     if (
-        (int(_mediaResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SIZE]) or
-        (int(_mediaResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SIZE])
+        (int(_mediaResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SHIT_SIZE]) or
+        (int(_mediaResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SHIT_SIZE])
     ):
       # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱
       print(f"""would move '{_sourceUrl_}' to '{V.VCD[KD_DEST_DIR_JUNK]}/{thisFileEntry_[K_FILENAME]}' for small size ({_mediaResult_[1][K_GEOMETRY_PAGE]})""")
@@ -315,8 +315,8 @@ def moveAFile_d(*,
       return False
       # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱
     elif (
-        (int(_mediaResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SIZE]) or
-        (int(_mediaResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SIZE])
+        (int(_mediaResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SHIT_SIZE]) or
+        (int(_mediaResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SHIT_SIZE])
     ):
       # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱
       _junkFilename_ = f"""{V.VCD[KD_DEST_DIR_JUNK]}/{thisFileEntry_[K_FILENAME]}.{_mediaResult_[1][K_GEOMETRY_PAGE]}.txt"""
@@ -560,8 +560,8 @@ def copyAFile(*,
     elif (
         (V.VCD[KD_DRY_RUN] is False) and
         (
-            (int(_mediaResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SIZE]) or
-            (int(_mediaResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SIZE])
+            (int(_mediaResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SHIT_SIZE]) or
+            (int(_mediaResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SHIT_SIZE])
         )
     ):
       # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱
@@ -576,8 +576,8 @@ def copyAFile(*,
     elif (
         (V.VCD[KD_DRY_RUN] is True) and
         (
-            (int(_mediaResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SIZE]) or
-            (int(_mediaResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SIZE])
+            (int(_mediaResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SHIT_SIZE]) or
+            (int(_mediaResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SHIT_SIZE])
         )
     ):
       # ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱ ⟰3⟱

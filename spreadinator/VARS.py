@@ -93,6 +93,7 @@ ALL_THE_KEYS = {
   "KD_DEST_DIR_JUNK": "KD_DEST_DIR_JUNK",
   "KD_DEST_DIR_OTHR": "KD_DEST_DIR_OTHR",
   "KD_DEST_DIR_PICS": "KD_DEST_DIR_PICS",
+  "KD_DEST_DIR_SHIT": "KD_DEST_DIR_SHIT",
   "KD_DEST_DIR_SNDS": "KD_DEST_DIR_SNDS",
   "KD_DEST_DIR_VIDS": "KD_DEST_DIR_VIDS",
   "KD_DEST_DIR": "KD_DEST_DIR",
@@ -107,15 +108,18 @@ ALL_THE_KEYS = {
   "KD_LOG_DIR": "KD_LOG_DIR",
   "KD_LOG_FILENAME": "KD_LOG_FILENAME",
   "KD_LOUDNESS": "KD_LOUDNESS",
-  "KD_MIN_SIZE": "KD_MIN_SIZE",
+  "KD_MIN_JUNK_SIZE": "KD_MIN_JUNK_SIZE",
+  "KD_MIN_SHIT_SIZE": "KD_MIN_SHIT_SIZE",
   "KD_MODE": "KD_MODE",
   "KD_NUM_DEST_DIRS": "KD_NUM_DEST_DIRS",
+  "KD_NUM_IN_JUNK_DIR": "KD_NUM_IN_JUNK_DIR",
   "KD_NUM_DIR_DIGITS_STR": "KD_NUM_DIR_DIGITS_STR",
   "KD_OPERATION": "KD_OPERATION",
   "KD_PER_FILE": "KD_PER_FILE",
   "KD_RENAME_ALL": "KD_RENAME_ALL",
   "KD_RENAME": "KD_RENAME",
   "KD_RESPREAD_DOT": "KD_RESPREAD_DOT",
+  "KD_SHOW_PROGRESS": "KD_SHOW_PROGRESS",
   "KD_SOURCE_DIR_LIST": "KD_SOURCE_DIR_LIST",
   "KD_SOURCE_FILE_LIST": "KD_SOURCE_FILE_LIST",
   "KD_SPREAD_FILES_PER_DIR": "KD_SPREAD_FILES_PER_DIR",
@@ -131,11 +135,19 @@ ARGV = None
 
 
 LOUDNESS_CHOICES = [
+  K_LF_ALL,
+  K_LF_ALL_OPERATIONS,
+  K_LF_DEBUG,
+  K_LF_FILE_OPERATIONS,
   K_LF_FUNCTION,
   K_LF_INFO,
   K_LF_LONG_LOOP,
+  K_LF_MEDIUM_LOOP,
+  K_LF_NONE,
   K_LF_PROGRESS,
-  # K_LF_SPEWAGE,
+  K_LF_SHORT_LOOP,
+  K_LF_SPEWAGE,
+  K_LF_SPLASH,
   ]
 
 
@@ -145,46 +157,50 @@ class C_CURRENT():
     # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
     self.D = {
       # 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱
-      KD_ADD_PREFIX: False,
-      KD_CHMOD: 0o666,
-      KD_CONFIG_DIR: "",
-      KD_CONVERT: True,
-      KD_CONVERT_JUNK: True,
-      KD_DEST_DIR_ANIM: "",
-      KD_DEST_DIR_CODE: "",
-      KD_DEST_DIR_COPY: "",
-      KD_DEST_DIR_DATA: "",
-      KD_DEST_DIR_DOCS: "",
-      KD_DEST_DIR_ERRS: "",
-      KD_DEST_DIR_JUNK: "",
-      KD_DEST_DIR_OTHR: "",
-      KD_DEST_DIR_PICS: "",
-      KD_DEST_DIR_SNDS: "",
-      KD_DEST_DIR_VIDS: "",
-      KD_DEST_DIR: "",
-      KD_DIR_NUM: 0,
-      KD_DRY_RUN: False,
-      KD_FILES_PER_DIR: 0,
-      KD_FORCE_DANGEROUS: False,
-      KD_HASH: CF_HASH.HASH_BLAKE2B,
-      KD_IDENTIFY: False,
-      KD_KILL_METADATA: True,
-      KD_KILL_SMALL: True,
-      KD_LOG_DIR: "/storage/logs/scripts/",
-      KD_LOG_FILENAME: "spreadinator.txt",
-      KD_LOUDNESS: 0,
-      KD_MIN_SIZE: 400,
-      KD_MODE: K_AUTO,
-      KD_NUM_DEST_DIRS: 300,
-      KD_NUM_DIR_DIGITS_STR: "03d",
-      KD_OPERATION: K_SPREAD,
-      KD_PER_FILE: False,
-      KD_RENAME_ALL: False,
-      KD_RENAME: True,
-      KD_RESPREAD_DOT: False,
-      KD_SOURCE_DIR_LIST: [],
-      KD_SOURCE_FILE_LIST: [],
-      KD_SPREAD_FILES_PER_DIR: 200,
+        KD_ADD_PREFIX: False,
+        KD_CHMOD: 0o666,
+        KD_CONFIG_DIR: "",
+        KD_CONVERT_JUNK: True,
+        KD_CONVERT: True,
+        KD_DEST_DIR_ANIM: "",
+        KD_DEST_DIR_CODE: "",
+        KD_DEST_DIR_COPY: "",
+        KD_DEST_DIR_DATA: "",
+        KD_DEST_DIR_DOCS: "",
+        KD_DEST_DIR_ERRS: "",
+        KD_DEST_DIR_JUNK: "",
+        KD_DEST_DIR_OTHR: "",
+        KD_DEST_DIR_PICS: "",
+        KD_DEST_DIR_SHIT: "",
+        KD_DEST_DIR_SNDS: "",
+        KD_DEST_DIR_VIDS: "",
+        KD_DEST_DIR: "",
+        KD_DIR_NUM: 0,
+        KD_DRY_RUN: False,
+        KD_FILES_PER_DIR: 0,
+        KD_FORCE_DANGEROUS: False,
+        KD_HASH: CF_HASH.HASH_BLAKE2B,
+        KD_IDENTIFY: False,
+        KD_KILL_METADATA: True,
+        KD_KILL_SMALL: True,
+        KD_LOG_DIR: "/storage/logs/scripts/",
+        KD_LOG_FILENAME: "spreadinator.txt",
+        KD_LOUDNESS: 0,
+        KD_MIN_JUNK_SIZE: 400,
+        KD_MIN_SHIT_SIZE: 128,
+        KD_MODE: K_AUTO,
+        KD_NUM_DEST_DIRS: 300,
+        KD_NUM_DIR_DIGITS_STR: "03d",
+        KD_NUM_IN_JUNK_DIR: 600,
+        KD_OPERATION: K_SPREAD,
+        KD_PER_FILE: False,
+        KD_RENAME_ALL: False,
+        KD_RENAME: True,
+        KD_RESPREAD_DOT: False,
+        KD_SHOW_PROGRESS: True,
+        KD_SOURCE_DIR_LIST: [],
+        KD_SOURCE_FILE_LIST: [],
+        KD_SPREAD_FILES_PER_DIR: 200,
       }
       # ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3
     # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
@@ -200,46 +216,50 @@ class C_DEFAULT():
     )
     self.D = {
       # 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱ 3⟱
-      KD_ADD_PREFIX: False,
-      KD_CHMOD: 0o666,
-      KD_CONFIG_DIR: CF_OS.EXPAND_USER("~/.config/spreadinator"),
-      KD_CONVERT: True,
-      KD_CONVERT_JUNK: True,
-      KD_DEST_DIR_ANIM: lambda _DIR_: f"""{_DIR_}/spreadDestAnim""",
-      KD_DEST_DIR_CODE: lambda _DIR_: f"""{_DIR_}/spreadDestCode""",
-      KD_DEST_DIR_COPY: lambda _DIR_: f"""{_DIR_}/spreadDestCopy""",
-      KD_DEST_DIR_DATA: lambda _DIR_: f"""{_DIR_}/spreadDestData""",
-      KD_DEST_DIR_DOCS: lambda _DIR_: f"""{_DIR_}/spreadDestDocs""",
-      KD_DEST_DIR_ERRS: lambda _DIR_: f"""{_DIR_}/spreadDestErrs""",
-      KD_DEST_DIR_JUNK: lambda _DIR_: f"""{_DIR_}/spreadDestJunk""",
-      KD_DEST_DIR_OTHR: lambda _DIR_: f"""{_DIR_}/spreadDestOthr""",
-      KD_DEST_DIR_PICS: lambda _DIR_: f"""{_DIR_}/spreadDestPics""",
-      KD_DEST_DIR_SNDS: lambda _DIR_: f"""{_DIR_}/spreadDestSnds""",
-      KD_DEST_DIR_VIDS: lambda _DIR_: f"""{_DIR_}/spreadDestVids""",
-      KD_DEST_DIR: "/storage/media",
-      KD_DIR_NUM: 0,
-      KD_DRY_RUN: False,
-      KD_FILES_PER_DIR: 2000,
-      KD_FORCE_DANGEROUS: False,
-      KD_HASH: HASH_BLAKE2B,
-      KD_IDENTIFY: True,
-      KD_KILL_METADATA: True,
-      KD_KILL_SMALL: True,
-      KD_LOG_DIR: "/storage/logs/scripts/",
-      KD_LOG_FILENAME: "spreadinator.txt",
-      KD_LOUDNESS: lambda X: _tempLoudness_,
-      KD_MIN_SIZE: 400,
-      KD_MODE: K_AUTO,
-      KD_NUM_DEST_DIRS: 300,
-      KD_NUM_DIR_DIGITS_STR: "03d",
-      KD_OPERATION: K_SPREAD,
-      KD_PER_FILE: False,
-      KD_RENAME_ALL: False,
-      KD_RENAME: True,
-      KD_RESPREAD_DOT: False,
-      KD_SOURCE_DIR_LIST: [CF_OS.ABS_PATH(CF_OS.EXPAND_USER("."))],
-      KD_SOURCE_FILE_LIST: [],
-      KD_SPREAD_FILES_PER_DIR: 300,
+        KD_ADD_PREFIX: False,
+        KD_CHMOD: 0o666,
+        KD_CONFIG_DIR: CF_OS.EXPAND_USER("~/.config/spreadinator"),
+        KD_CONVERT_JUNK: True,
+        KD_CONVERT: True,
+        KD_DEST_DIR_ANIM: lambda _DIR_: f"""{_DIR_}/spreadDestAnim""",
+        KD_DEST_DIR_CODE: lambda _DIR_: f"""{_DIR_}/spreadDestCode""",
+        KD_DEST_DIR_COPY: lambda _DIR_: f"""{_DIR_}/spreadDestCopy""",
+        KD_DEST_DIR_DATA: lambda _DIR_: f"""{_DIR_}/spreadDestData""",
+        KD_DEST_DIR_DOCS: lambda _DIR_: f"""{_DIR_}/spreadDestDocs""",
+        KD_DEST_DIR_ERRS: lambda _DIR_: f"""{_DIR_}/spreadDestErrs""",
+        KD_DEST_DIR_JUNK: lambda _DIR_: f"""{_DIR_}/spreadDestJunk/000""",
+        KD_DEST_DIR_OTHR: lambda _DIR_: f"""{_DIR_}/spreadDestOthr""",
+        KD_DEST_DIR_PICS: lambda _DIR_: f"""{_DIR_}/spreadDestPics""",
+        KD_DEST_DIR_SHIT: lambda _DIR_: f"""{_DIR_}/spreadDestShit/000""",
+        KD_DEST_DIR_SNDS: lambda _DIR_: f"""{_DIR_}/spreadDestSnds""",
+        KD_DEST_DIR_VIDS: lambda _DIR_: f"""{_DIR_}/spreadDestVids""",
+        KD_DEST_DIR: "/storage/media",
+        KD_DIR_NUM: 0,
+        KD_DRY_RUN: False,
+        KD_FILES_PER_DIR: 2000,
+        KD_FORCE_DANGEROUS: False,
+        KD_HASH: HASH_BLAKE2B,
+        KD_IDENTIFY: True,
+        KD_KILL_METADATA: True,
+        KD_KILL_SMALL: True,
+        KD_LOG_DIR: "/storage/logs/scripts/",
+        KD_LOG_FILENAME: "spreadinator.txt",
+        KD_LOUDNESS: lambda X: _tempLoudness_,
+        KD_MIN_JUNK_SIZE: 400,
+        KD_MIN_SHIT_SIZE: 128,
+        KD_MODE: K_AUTO,
+        KD_NUM_DEST_DIRS: 300,
+        KD_NUM_DIR_DIGITS_STR: "03d",
+        KD_NUM_IN_JUNK_DIR: 600,
+        KD_OPERATION: K_SPREAD,
+        KD_PER_FILE: False,
+        KD_RENAME_ALL: False,
+        KD_RENAME: True,
+        KD_RESPREAD_DOT: False,
+        KD_SHOW_PROGRESS: True,
+        KD_SOURCE_DIR_LIST: [CF_OS.ABS_PATH(CF_OS.EXPAND_USER("."))],
+        KD_SOURCE_FILE_LIST: [],
+        KD_SPREAD_FILES_PER_DIR: 300,
       }
       # ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3 ⟰3
     # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
@@ -256,6 +276,21 @@ CHECK_DEST_LIST = [
   K_RESPREAD,
   K_SPREAD
 ]
+
+
+# K_LF_ALL
+# K_LF_ALL_OPERATIONS
+# K_LF_DEBUG
+# K_LF_FILE_OPERATIONS
+# K_LF_FUNCTION
+# K_LF_INFO
+# K_LF_LONG_LOOP
+# K_LF_MEDIUM_LOOP
+#   "K_LF_NONE": {
+# K_LF_PROGRESS
+# K_LF_SHORT_LOOP
+# K_LF_SPEWAGE
+# K_LF_SPLASH
 
 
 # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
@@ -684,7 +719,8 @@ OG_MAIN = [
     CF_OPT.V.O_DRY_RUN,  ##
     CF_OPT.V.O_FORCE,  ##
     CF_OPT.V.O_HELP,  ##
-    CF_OPT.V.O_LOUDNESS,  ##
+    CF_OPT.V.O_LOUDNESS_WORDS,  ##
+    CF_OPT.V.O_SHOW_PROGRESS,
     CF_OPT.V.O_SOURCE_DIR,  ##
     O_ADD_PREFIX,  ##
     O_CONFIG_DIR,  ##
@@ -1156,6 +1192,25 @@ def getOptions():
   # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 
   # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+  # * Start of show progress.
+  # ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱
+  if (
+      (V.ARGS.showProgress is None)
+  ):
+    # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
+    V.VCD[KD_SHOW_PROGRESS] = V.VDD[KD_SHOW_PROGRESS]
+    # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+  else:
+    # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
+    V.VCD[KD_SHOW_PROGRESS] = V.CF_OPT.V.RETURN_BOOL(
+      boolToFix_=V.ARGS.showProgress,
+    )
+    # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+  # ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰ ⟰
+  # * End of show progress.
+  # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+
+  # * #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   # * Start of add prefix.
   # ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱ ⟱
   V.VCD[KD_ADD_PREFIX] = V.CF_OPT.V.RETURN_BOOL(V.ARGS.addPrefix)
@@ -1343,6 +1398,8 @@ def checkMakeDest(
     {V.VCD[KD_DEST_DIR_JUNK]=}
     {V.VCD[KD_DEST_DIR_OTHR]=}
     {V.VCD[KD_DEST_DIR_PICS]=}
+    {V.VCD[KD_DEST_DIR_SHIT]=}
+    {V.VCD[KD_DEST_DIR_SNDS]=}
     {V.VCD[KD_DEST_DIR_VIDS]=}
   """
   #print(_strToWrite_)
@@ -1418,6 +1475,16 @@ def checkMakeDest(
     # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
     V.CF_OS.MKDIRS(
       name_=V.VCD[KD_DEST_DIR_OTHR],
+    )
+    # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+
+  if (
+      (V.VCD[KD_OPERATION] in V.CHECK_DEST_LIST) and
+      (not V.CF_OS.EXISTS(V.VCD[KD_DEST_DIR_SHIT]))
+  ):
+    # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
+    V.CF_OS.MKDIRS(
+      name_=V.VCD[KD_DEST_DIR_SHIT],
     )
     # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
 
@@ -1579,6 +1646,7 @@ def setVCDDestDirs():
   V.VCD[KD_DEST_DIR_JUNK] = V.VDD[KD_DEST_DIR_JUNK](V.VCD[KD_DEST_DIR])
   V.VCD[KD_DEST_DIR_OTHR] = V.VDD[KD_DEST_DIR_OTHR](V.VCD[KD_DEST_DIR])
   V.VCD[KD_DEST_DIR_PICS] = V.VDD[KD_DEST_DIR_PICS](V.VCD[KD_DEST_DIR])
+  V.VCD[KD_DEST_DIR_SHIT] = V.VDD[KD_DEST_DIR_SHIT](V.VCD[KD_DEST_DIR])
   V.VCD[KD_DEST_DIR_SNDS] = V.VDD[KD_DEST_DIR_SNDS](V.VCD[KD_DEST_DIR])
   V.VCD[KD_DEST_DIR_VIDS] = V.VDD[KD_DEST_DIR_VIDS](V.VCD[KD_DEST_DIR])
   # ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1

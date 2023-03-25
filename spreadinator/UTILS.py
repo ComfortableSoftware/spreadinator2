@@ -12,6 +12,19 @@ locals().update(V.ALL_THE_SPREAD_VALS)
 WAIS = V.CF_WW.whereStr
 
 
+def checkRotateJunk(*,
+      thisFileEntry_,
+    ):
+  _numFiles_ = V.CF_OS.getFCount(
+      rootDirToCount_ = V.VCD[KD_DEST_DIR_JUNK],
+    )
+
+  if (
+      (_numFiles_ > V.VCD[KD_NUM_IN_JUNK_DIR])
+  ):
+    _oldFilename_ = ""
+
+
 class convertAFile_C():
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
   def __init__(self, *,
@@ -246,7 +259,7 @@ def identifyAFile(*,
   elif (
       (_IDResult_[1][K_FRAME] != 1)
   ):
-  # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
+    # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
 
     if (
         (V.VCD[KD_RENAME_ALL] is True)
@@ -271,10 +284,29 @@ def identifyAFile(*,
       thisFileEntry_=_thisFileEntry_,
     )
     return (False, _IDResult_)
-  # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+    # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
   elif (
-      (int(_IDResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SIZE]) or
-      (int(_IDResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SIZE])
+      (int(_IDResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_SHIT_SIZE]) or
+      (int(_IDResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_SHIT_SIZE])
+  ):
+    # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
+    _thisFileEntry_[K_ERROR_TEXT] += f"""{_IDResult_=}"""
+    _thisFileEntry_ = V.CF_OS.addNewFilePiece(
+        newDir_=V.VCD[KD_DEST_DIR_SHIT],
+        newExtension_=_thisFileEntry_[K_EXTENSION].lower(),
+        newJustFilename_= f"""{_thisFileEntry_[K_FILENAME]}""",
+        newJustFilenameSuffix_=f""".shitSize{int(_IDResult_[1][K_GEOMETRY_PAGE][0])}x{int(_IDResult_[1][K_GEOMETRY_PAGE][1])}""",
+        thisFileEntry_=_thisFileEntry_,
+      )
+    #print(WAIS() + f"""{NEWLINE}{_thisFileEntry_=}""")
+    doMoveAJunkImage(
+      thisFileEntry_=_thisFileEntry_,
+    )
+    return (False, _IDResult_)
+    # ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2 ⟰2
+  elif (
+      (int(_IDResult_[1][K_GEOMETRY_PAGE][0]) < V.VCD[KD_MIN_JUNK_SIZE]) or
+      (int(_IDResult_[1][K_GEOMETRY_PAGE][1]) < V.VCD[KD_MIN_JUNK_SIZE])
   ):
     # 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱ 2⟱
     _thisFileEntry_[K_ERROR_TEXT] += f"""{_IDResult_=}"""
@@ -282,7 +314,7 @@ def identifyAFile(*,
         newDir_=V.VCD[KD_DEST_DIR_JUNK],
         newExtension_=_thisFileEntry_[K_EXTENSION].lower(),
         newJustFilename_= f"""{_thisFileEntry_[K_FILENAME]}""",
-        newJustFilenameSuffix_=f""".sizeError_{int(_IDResult_[1][K_GEOMETRY_PAGE][0])}x{int(_IDResult_[1][K_GEOMETRY_PAGE][1])}""",
+        newJustFilenameSuffix_=f""".junkSize{int(_IDResult_[1][K_GEOMETRY_PAGE][0])}x{int(_IDResult_[1][K_GEOMETRY_PAGE][1])}""",
         thisFileEntry_=_thisFileEntry_,
       )
     doMoveAJunkImage(
@@ -445,7 +477,7 @@ def moveANotProcessedFile(thisFileEntry_):
   # ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1 ⟰1
 
 
-def moveASound(*, parms):
+def moveASound(thisFileEntry_):
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
   _thisFileEntry_ = thisFileEntry_
 
@@ -556,6 +588,12 @@ def writeErrorTxtFile(*,
     ):
   # 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱ 1⟱
   _thisFileEntry_ = thisFileEntry_
+  _strToWrite_ = WAIS(skipFrames_=3) + f"""
+  {thisFileEntry_[K_NEW_DIR]=}
+  {thisFileEntry_[K_NEW_JUST_FILENAME]=}
+  {thisFileEntry_[K_NEW_JUST_FILENAME_SUFFIX]=}
+  """
+  # print(_strToWrite_)
   _errorTextFilePath_ = f"""{thisFileEntry_[K_NEW_DIR]}/{thisFileEntry_[K_NEW_JUST_FILENAME]}{thisFileEntry_[K_NEW_JUST_FILENAME_SUFFIX]}.txt"""
   thisFileEntry_[K_ERROR_TEXT] += f"""{NEWLINE}{thisFileEntry_=}{NEWLINE}"""
   with open(_errorTextFilePath_, "tw") as _FDOut_:
